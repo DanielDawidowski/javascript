@@ -1,0 +1,78 @@
+<html>
+ 
+<head>
+    <title>JavaScript</title>
+    <style>
+        .popup {
+            padding: 10px;
+            font-family: cursive;
+            border: 1px solid black;
+            text-align: center;
+            cursor: pointer;
+            width: 200px;
+        }
+        
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            font-size: 0.8em;
+        }
+        
+        .output {
+            position: absolute;
+            background-color: #ddd;
+            left: 25%;
+            width: 50%;
+            top: 10%;
+            padding: 15px;
+            border: 1px solid black;
+            min-height: 25%;
+        }
+        
+        .message {
+            text-align: center;
+            font-family: sans-serif;
+            margin-top: 20px;
+        }
+        
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+ 
+<body>
+    <div class="output hide">
+        <button class="close">close</button>
+        <div class="message">No Content Yet</div>
+    </div>
+    <div class="popup" data-message="Hello World">Click Me</div>
+    <div class="popup" data-message="JavaScript is fun">JavaScript</div>
+    <div class="popup" data-message="Wow cool">Click Me 2</div>
+    <script>
+        const popups = document.querySelectorAll(".popup");
+        const popup = document.querySelector(".output");
+        const popMessage = document.querySelector(".message");
+        const closeButton = document.querySelector(".close");
+        closeButton.addEventListener("click", function () {
+            popup.classList.add("hide");
+        })
+        for (let x = 0; x < popups.length; x++) {
+            console.log(popups[x]);
+            popups[x].addEventListener("click", function () {
+                let outputText = this.getAttribute("data-message");
+                message(outputText);
+            })
+        }
+ 
+        function message(output) {
+            popup.classList.remove("hide");
+            popMessage.innerText = output;
+        }
+    </script>
+</body>
+ 
+</html>
